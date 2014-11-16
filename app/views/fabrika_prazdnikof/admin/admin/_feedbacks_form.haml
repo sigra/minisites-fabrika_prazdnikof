@@ -1,0 +1,21 @@
+%h3 Отзывы
+.row
+  .col-lg-3
+    .panel.panel-info
+      .panel-heading Новый отзыв
+      .panel-body
+        = form_for FabrikaPrazdnikof::Feedback.new, url: admin_feedbacks_path do |f|
+          .form-group
+            %label Автор отзыва
+            = f.text_field :author, class: 'form-control'
+          .form-group
+            %label Текст
+            = f.text_area :text, class: 'form-control', rows: 5
+          .form-group= submit_tag "Добавить отзыв", class: 'btn btn-primary'
+  - FabrikaPrazdnikof::Feedback.order("created_at DESC").each do |f|
+    .col-lg-3
+      .panel.panel-default
+        .panel-heading= f.author
+        .panel-body
+          = f.text
+          = button_to "Удалить", admin_feedback_path(f), method: :delete, class: 'btn btn-danger btn-xs', onclick: "return confirm('Подтверждаете?')"

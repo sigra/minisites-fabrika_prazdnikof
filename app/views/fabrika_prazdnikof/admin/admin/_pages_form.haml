@@ -1,0 +1,15 @@
+%h3 Текста страниц
+%ul.nav.nav-tabs
+  - pages.each do |page|
+    %li{class: ('active' if page.key == current_page)}
+      %a{"data-toggle" => "tab", href: "##{page.key}"}= page.title
+.tab-content
+  - pages.each do |page|
+    %div{class: "tab-pane #{'active' if page.key == current_page}", id: page.key}
+      .row
+        .col-lg-12{style: "margin-top: 20px;"}
+          = form_for [:admin, page], class: 'form form-horizontal' do |f|
+            .form-group
+              = f.text_area :text, class: 'form-control', rows: 20
+              .col-lg-2
+                = submit_tag "Обновить #{page.title}", class: 'btn btn-primary'

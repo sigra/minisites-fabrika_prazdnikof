@@ -1,0 +1,1 @@
+Rails.application.config.assets.precompile += %w( fabrika_prazdnikof/admin.css fabrika_prazdnikof/admin.js )

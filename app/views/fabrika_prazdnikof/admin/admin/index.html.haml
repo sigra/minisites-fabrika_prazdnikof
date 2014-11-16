@@ -1,0 +1,17 @@
+.row
+  .col-lg-12
+    .page-header
+      %h1
+        Добро пожаловать в систему управления!
+        %small Приятной работы
+.row
+  .col-lg-12= render 'seo_form', settings: @settings
+.row
+  .col-lg-12= render 'main_settings_form', settings: @settings
+.row
+  .col-lg-12= render 'pages_form', pages: @pages, current_page: @current_page
+.row
+  .col-lg-12= render 'photos_form', pages: @pages, current_gallery: @current_gallery
+%hr
+.row
+  .col-lg-12= render 'feedbacks_form'

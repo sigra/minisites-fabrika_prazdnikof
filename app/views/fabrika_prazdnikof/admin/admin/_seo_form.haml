@@ -1,0 +1,14 @@
+%h3 Настройки SEO
+= form_for 'settings', url: admin_settings_path do |f|
+  %table.table.table-bordered
+    %tr
+      %td Keywords
+      %td
+        .form-group= f.text_area :keywords, value: settings["keywords"], class: 'form-control', rows: 5
+    %tr
+      %td Description
+      %td
+        .form-group
+          .form-group= f.text_area :description, value: settings["description"], class: 'form-control', rows: 2
+  .col-lg-2
+    .form-group= submit_tag 'Обновить SEO информацию', class: 'btn btn-primary'

@@ -1,0 +1,7 @@
+fabrika_prazdnikof:
+  admin:
+    login: admin
+    password: admin
+  email:
+    login: example@mail.com
+    password: email_password

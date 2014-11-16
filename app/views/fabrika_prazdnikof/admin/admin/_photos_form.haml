@@ -1,0 +1,20 @@
+%h3 Фотогаллерея
+%ul.nav.nav-tabs
+  - pages.each do |page|
+    %li{class: ('active' if page.key == current_gallery)}
+      %a{"data-toggle" => "tab", href: "#photo#{page.key}"}= page.title
+.tab-content
+  - pages.each do |page|
+    %div{class: "tab-pane #{'active' if page.key == current_gallery}", id: "photo#{page.key}"}
+      .row
+        .col-lg-12{style: "margin-top: 20px;"}
+          = form_for FabrikaPrazdnikof::Photo.new(key: page.key), url: admin_photos_path, multipart: true, class: 'form form-horizontal' do |f|
+            = f.hidden_field :key
+            .form-group
+              .col-lg-3= f.file_field :image, class: 'form-control'
+              .col-lg-2= submit_tag "Добавить фото", class: 'btn btn-primary'
+      .row
+        - FabrikaPrazdnikof::Photo.where(key: page.key).each do |photo|
+          .col-lg-2{style: "margin-bottom: 15px;"}
+            %img.img-thumbnail{src: "/fabrika_prazdnikof/dragonfly/#{photo.thumb_uid}"}
+            = button_to "удалить", [:admin, photo], method: :delete, class: 'btn btn-xs btn-danger', onclick: "return confirm('Подтверждаете?')"

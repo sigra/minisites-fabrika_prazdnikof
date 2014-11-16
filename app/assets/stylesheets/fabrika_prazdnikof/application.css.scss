@@ -1,0 +1,741 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require ./normalize
+ *= require_self
+ */
+
+$containerWidth: 1020px;
+
+@import "mixins";
+@import "layout";
+
+.clearfix {
+  @include clearfix();
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+h2 { font-size: 30px; font-weight: 300; }
+
+// форма захвата
+.buy {
+  display: table;
+  position: absolute;
+  width: 373px;
+  height: 210px;
+  background: transparent url(buy.png) center center no-repeat;
+
+  .wrapper {
+    display: table;
+    position: absolute;
+    height: 50px;
+    top: 54px;
+    left: 95px;
+    cursor: pointer;
+    color: #003e73;
+    @include transition(all .3s ease);
+
+    &:hover {
+      color: darken(#003e73, 20%);
+      @include transition(all .3s ease);
+    }
+  }
+
+  span {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    width: 180px;
+  }
+}
+
+// верхний блок
+#header {
+  position: relative;
+  min-height: 452px;
+  padding-bottom: 368px;
+  @include gradient-vertical(#e5f3f3, #72cbeb);
+
+  // милая стрелочка снизу
+  &:after {
+    content: "\00a0";
+    $width: 902px;
+    $height: 85px;
+    position: absolute;
+    width: $width;
+    height: $height;
+    bottom: -40px;
+    left: 50%;
+    margin-left: -$width/2;
+    background: transparent url(header-shadow-bottom.png) center center no-repeat;
+    z-index: 1;
+  }
+
+  // серая полоска снизу
+  .bg-2 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 137px;
+    background: #e3eee9;
+  }
+
+  // картинка с шариками и домиками
+  .bg-3 {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -647.5px;
+    width: 1295px;
+    height: 758px;
+    background: transparent url(bg.png) 0 0 no-repeat;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  // логотип
+  #logo {
+    position: relative;
+    float: left;
+    width: 235px;
+    height: 153px;
+    margin-top: 20px;
+    background: transparent url(logo.png);
+
+    a {
+      display: block;
+      position: absolute;
+      top: 0; bottom: 0; width: 100%;
+    }
+  }
+
+  // телефон с самолётом
+  #phone {
+    position: relative;
+    float: right;
+    width: 417px;
+    height: 119px;
+    margin-top: 55px;
+    background: transparent url(plane.png);
+
+    .text {
+      position: absolute;
+      color: #ff8a03;
+      font-size: 18px;
+      font-weight: bold;
+      top: 40px;
+      left: 78px;
+    }
+  }
+
+  .buy {
+    bottom: -174px;
+    right: -84px;
+  }
+}
+
+// основное меню
+#menu {
+  @include clearfix();
+
+  .item {
+    @include clearfix();
+    float: left;
+    width: 33%;
+    margin-bottom: 60px;
+
+    .image {
+      width: 160px;
+      height: 160px;
+      border-width: 2px;
+      border-style: solid;
+      cursor: pointer;
+      @include translucent-border(#fff, 0.7);
+      @include border-radius(160px);
+      @include opacity(90);
+      @include transition(all .4s ease);
+
+      &:hover {
+        @include opacity(100);
+        @include transition(all .4s ease);
+      }
+    }
+
+    .title {
+      padding-top: 50px;
+      font-family: Impact, Charcoal, sans-serif;
+      font-size: 23px;
+      color: #003e73;
+      line-height: 23px;
+      cursor: pointer;
+    }
+
+    // картинка слева, текст справа
+    &.image-left {
+      .image { float: left; }
+      .title { float: left; padding-left: 10px; }
+    }
+    // картинка справа, текст слева
+    &.image-right {
+      .image { float: right; }
+      .title { float: right; padding-right: 10px; }
+    }
+  }
+}
+
+// картинки основного меню на главной
+#menu-1 { background: transparent url(menu-1.png) center center no-repeat; }
+#menu-2 { background: transparent url(menu-2.png) center center no-repeat; }
+#menu-3 { background: transparent url(menu-3.png) center center no-repeat; }
+#menu-4 { background: transparent url(menu-4.png) center center no-repeat; }
+#menu-5 { background: transparent url(menu-5.png) center center no-repeat; }
+#menu-6 { background: transparent url(menu-6.png) center center no-repeat; }
+
+// левое меню на внутренней странице
+#left-menu {
+  @include clearfix();
+  width: 260px;
+  min-height: 740px;
+  float: left;
+
+  .item {
+    width: 100%;
+    @include clearfix();
+
+    .image {
+      width: 40%;
+
+      img {
+        max-width: 100%;
+        cursor: pointer;
+      }
+    }
+
+    .title {
+      padding-top: 30px;
+      font-family: Impact, Charcoal, sans-serif;
+      font-size: 18px;
+      line-height: 18px;
+      color: #003e73;
+      cursor: pointer;
+      width: 129px;
+    }
+
+    // эмуляция чередования пунктов меню (текст с одной стороны, картинка с другой - и наоборот)
+    &.even {
+      .image { float: left; }
+      .title { float: left; padding-left: 10px; }
+    }
+
+    &.odd {
+      .image { float: right; }
+      .title { float: right; padding-right: 10px; text-align: left; }
+    }
+  }
+}
+
+// основное содержание внутренней страницы
+#content {
+  float: left;
+  margin-left: 85px;
+
+  .image {
+    float: left;
+  }
+
+  .content {
+    float: left;
+    width: 465px;
+    margin-left: 30px;
+
+    .title {
+      margin-top: 36px;
+      font-family: Impact, Charcoal, sans-serif;
+      font-size: 36px;
+      line-height: 32px;
+      margin-bottom: 8px;
+    }
+
+    .text {
+      font-size: 14px;
+      line-height: 19px;
+
+      p {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
+#gallery {
+  position: relative;
+  margin-top: 40px;
+
+  .arrow {
+    position: absolute;
+    cursor: pointer;
+    width: 40px;
+    bottom: 0;
+    top: 0;
+    @include transition(all .2s ease);
+
+    &.left {
+      left: -35px;
+      background: transparent url(gallery-arrow-left.png) center center no-repeat;
+    }
+    &.right {
+      right: -30px;
+      background: transparent url(gallery-arrow-right.png) center center no-repeat;
+    }
+    &.disabled {
+      cursor: auto;
+      @include opacity(30);
+      @include transition(all .2s ease);
+    }
+  }
+}
+
+#gallery-overflow {
+  overflow: hidden;
+  width: 640px;
+  @include center-block();
+  position: relative;
+}
+
+#gallery-wrapper {
+  @include clearfix();
+  position: relative;
+  width: 30000px;
+  left: 0;
+  @include transition(all .3s ease);
+
+  .photo {
+    float: left;
+    margin-right: 25px;
+    width: 195px;
+    cursor: pointer;
+
+    img {
+      max-width: 100%;
+      border: 1px solid rgba(0,0,0,.4);
+
+      &:hover {
+        border-color: #444;
+      }
+    }
+  }
+}
+
+#feedbacks {
+  @include gradient-vertical(#ffcc00, #efa900);
+  padding-bottom: 60px;
+  position: relative;
+
+  &:after {
+    content: "\00a0";
+    $width: 553px;
+    $height: 46px;
+    position: absolute;
+    width: $width;
+    height: $height;
+    bottom: 0;
+    left: 50%;
+    margin-left: -$width/2;
+    background: transparent url(feedback-shadow-bottom.png) center center no-repeat;
+  }
+
+  .container {
+    position: relative;
+
+    .arrow {
+      position: absolute;
+      top: 65px;
+      font-size: 40px;
+      cursor: pointer;
+      width: 40px;
+      height: 100px;
+      @include transition(all .2s ease);
+
+      &.left {
+        left: -15px;
+        background: transparent url(feedback-arrow-left.png) center center no-repeat;
+      }
+      &.right {
+        right: -15px;
+        background: transparent url(feedback-arrow-right.png) center center no-repeat;
+      }
+      &.disabled {
+        cursor: auto;
+        @include opacity(30);
+        @include transition(all .2s ease);
+      }
+    }
+  }
+
+  .header {
+    margin-left: ($containerWidth - 940px)/2;
+  }
+
+  #feedbacks-overflow {
+    overflow: hidden;
+    width: 940px;
+    @include center-block();
+    position: relative;
+  }
+
+  #feedbacks-wrapper {
+    @include clearfix();
+    position: relative;
+    width: 10000px;
+    left: 0;
+    @include transition(all .3s ease);
+
+    .feedback {
+      float: left;
+      margin-right: 73px;
+      font-family: Ubuntu;
+      font-size: 13px;
+      line-height: 20px;
+      color: #3b5a71;
+      text-align: center;
+    }
+
+    .bubble {
+      position: relative;
+      width: 230px;
+      min-height: 75px;
+      padding: 17px;
+      background: #FFFFFF;
+      @include border-radius(5px);
+
+      &:after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 14px 17px 0;
+        border-color: #FFFFFF transparent;
+        display: block;
+        width: 0;
+        z-index: 1;
+        bottom: -14px;
+        left: 115px;
+      }
+    }
+
+    .author {
+      margin-top: 15px;
+    }
+  }
+}
+
+#about {
+  .container {
+    width: 940px;
+  }
+
+  .block-row {
+    @include clearfix();
+    padding-bottom: 35px;
+  }
+
+  .block {
+    width: 450px;
+    float: left;
+    margin-right: 40px;
+  }
+
+  .image {
+    padding-top: 15px;
+    width: 152px;
+    min-height: 152px;
+    float: left;
+  }
+
+  .text {
+    float: left;
+    width: 278px;
+    margin-left: 20px;
+    font-size: 14px;
+  }
+
+  #about-1 { background: transparent url(about-1.jpg) center center no-repeat;}
+  #about-2 { background: transparent url(about-2.jpg) center center no-repeat;}
+  #about-3 { background: transparent url(about-3.jpg) center center no-repeat;}
+  #about-4 { background: transparent url(about-4.jpg) center center no-repeat;}
+}
+
+#special {
+  @include gradient-vertical(#0ebeff, #0478ba);
+
+  .container {
+    width: 910px;
+    min-height: 230px;
+    padding-left: 30px;
+    position: relative;
+  }
+
+  .offer {
+    width: 470px;
+    padding: 50px 20px;
+    font-family: Ubuntu;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 32px;
+    color: #fff;
+  }
+
+  .balloon {
+    position: absolute;
+    background: transparent url(balloons.png) center center no-repeat;
+    width: 185px;
+    left: 570px;
+    top: 0;
+    bottom: 0;
+  }
+
+  .buy {
+    right: -132px;
+    top: 50%;
+    margin-top: -98px;
+  }
+}
+
+#where {
+  background-color: #e3eee9;
+
+  h2 {
+    position: relative;
+    z-index: 100;
+  }
+
+  .container {
+    width: 940px;
+  }
+
+  #map-wrapper {
+    position: relative;
+    height: 510px;
+
+    #map {
+      width: 1108px;
+      height: 622px;
+      position: absolute;
+      top: -75px;
+      left: -70px;
+      background: transparent url(map.jpg) center center no-repeat;
+    }
+  }
+
+  .address {
+    position: relative;
+    z-index: 100;
+    margin-bottom: 20px;
+    font-family: Ubuntu;
+    font-size: 14px;
+  }
+}
+
+#footer {
+  border-top: 3px solid #343434;
+  background-color: #5a5a5a;
+  min-height: 315px;
+  font-family: Ubuntu;
+  font-size: 14px;
+
+  .container {
+    width: 940px;
+    position: relative;
+  }
+
+  .logo {
+    width: 225px;
+    height: 163px;
+    background: transparent url(footer-logo.png) center center no-repeat;
+    padding-top: 30px;
+  }
+
+  .company {
+    margin-top: 20px;
+    color: #fff;
+  }
+
+  #all-rights {
+    padding-top: 40px;
+    color: #8d8d8d;
+  }
+
+  #written-by {
+    position: absolute;
+    top: 30%;
+    right: 20px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+
+      &:hover {
+        color: #999;
+        text-decoration: underline;
+      }
+
+      &:visited { color: #fff; }
+    }
+  }
+}
+
+.overflow {
+  position: absolute;
+  background: rgba(0,0,0,.7);
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.modal {
+  $width: 600px;
+  $height: 350px;
+  width: $width;
+  min-height: $height;
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  margin-top: -$height/2;
+  left: 50%;
+  margin-left: -$width/2;
+  border: 1px solid black;
+  padding: 40px;
+
+  .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 25px;
+    text-align: center;
+    color: #aaa;
+
+    &:hover { color: #444;}
+  }
+}
+
+#form-buy {
+  h2 {
+    text-align: center;
+  }
+
+  input {
+    display: block;
+    width: 400px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 4px #444;
+    padding: 7px 15px;
+    font-size: 30px;
+    margin: 0 auto 20px;
+
+    &:focus {
+      box-shadow: 0 0 7px #0066cc;
+    }
+  }
+
+  .submit {
+    -moz-box-shadow:inset 0px 1px 30px 0px #fce2c1;
+    -webkit-box-shadow:inset 0px 1px 30px 0px #fce2c1;
+    box-shadow:inset 0px 1px 30px 0px #fce2c1;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
+    background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+    background-color:#ffc477;
+    @include border-radius(15px);
+    text-indent:0px;
+    border:2px solid #eeb44f;
+    display:block;
+    color:#ffffff;
+    font-size:30px;
+    height:60px;
+    line-height:45px;
+    width:326px;
+    text-decoration:none;
+    text-align:center;
+    text-shadow:1px 1px 14px #cc9f52;
+    margin: 0 auto;
+    outline: none;
+
+    &:hover {
+      background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
+      background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
+      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+      background-color:#fb9e25;
+    }
+
+    &:active {
+      position:relative;
+      top:1px;
+    }
+
+    &.disabled {
+      @include gradient-vertical(#ccc, #999);
+    }
+  }
+}
+
+#big-photo {
+  .modal {
+    $width: 880px;
+    width: $width;
+    min-height: 250px;
+    position: absolute;
+    margin-top: 0;
+    top: 100px;
+    left: 50%;
+    margin-left: -$width/2;
+    background: #fff url(ajax-loader.gif) center center no-repeat;
+  }
+
+  .photo {
+    position: relative;
+    text-align: center;
+  }
+
+  .arrow {
+    position: absolute;
+    cursor: pointer;
+    width: 40px;
+    bottom: 0;
+    top: 0;
+    @include transition(all .2s ease);
+
+    &.left {
+      left: -25px;
+      background: transparent url(gallery-arrow-left.png) center center no-repeat;
+    }
+    &.right {
+      right: -25px;
+      background: transparent url(gallery-arrow-right.png) center center no-repeat;
+    }
+    &.disabled {
+      cursor: auto;
+      @include opacity(30);
+      @include transition(all .2s ease);
+    }
+  }
+}

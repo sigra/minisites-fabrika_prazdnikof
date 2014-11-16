@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  width: 100%;
+  min-width: $containerWidth;
+  @include clearfix();
+}
+
+.container {
+  width: $containerWidth;
+  @include center-block();
+}
+
+.no-margin-right {
+  margin-right:0!important;
+}
+
+.no-margin-left {
+  margin-left:0!important;
+}

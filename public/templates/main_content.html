@@ -1,0 +1,30 @@
+<div class="clearfix">
+  <div id="left-menu">
+    <div class="item" ng-repeat="p in filtered(pages)" ng-class-even="'even'" ng-class-odd="'odd'">
+      <div class="image" ng-click="$state.transitionTo('page', { page_id: p.id })"><img ng-src="{{ p.img }}" /></div>
+      <div class="title" ng-bind-html="p.name" ng-click="$state.transitionTo('page', { page_id: p.id })"></div>
+    </div>
+  </div>
+  <div id="content">
+    <div class="clearfix">
+      <div class="image">
+        <img ng-src="{{ page.img }}" />
+      </div>
+      <div class="content">
+        <div class="title" ng-bind-html="page.name"></div>
+        <div class="text" ng-cloak ng-bind-html="text"></div>
+      </div>
+    </div>
+    <div id="gallery" ng-if="photos.length > 0">
+      <div class="arrow left" ng-click="movePhotoLeft()" ng-class="{disabled: !photoCanMove('left') }"></div>
+      <div class="arrow right" ng-click="movePhotoRight()" ng-class="{disabled: !photoCanMove('right') }"></div>
+      <div id="gallery-overflow">
+        <div id="gallery-wrapper" ng-style="galleryLineStyle">
+          <div class="photo" ng-repeat="photo in photos">
+            <img ng-src="{{ photo.thumb }}" ng-click="showBigPhoto($index)" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

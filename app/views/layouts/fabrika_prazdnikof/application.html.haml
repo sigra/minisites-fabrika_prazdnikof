@@ -1,0 +1,20 @@
+!!! 5
+%html(ng-app="fp")
+  %head
+    %meta(charset="utf-8")
+    - if @meta.present?
+      %meta{ name: "Description", content: @meta[:description] }
+      %meta{ name: "Keywords", content: @meta[:keywords] }
+
+    %meta(name='yandex-verification' content='76a4e14c6c53d77c')
+    %meta(name='google-site-verification' content='google374f2f15f46e0e2d')
+
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&subset=latin,cyrillic'
+    = stylesheet_link_tag 'fabrika_prazdnikof/application', media: "all"
+
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular.min.js"
+    = javascript_include_tag "fabrika_prazdnikof/application"
+
+    %title Фабрика Праздников в Тольятти
+  %body
+    = yield

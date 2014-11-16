@@ -1,0 +1,88 @@
+#header.row{"ng-style" => "rowStyle"}
+  .bg-1
+  .bg-2
+  .bg-3
+  .container
+    .clearfix
+      #logo
+        %a{:href => "/"}
+      #phone
+        %span.text {{ settings.phone }}
+    %div{"ui-view" => ""}
+  .container
+    .buy
+      .wrapper{"ng-click" => "formState=true"}
+        %span Заказать праздник
+#feedbacks.row{"ng-style" => "rowStyle"}
+  .container
+    %h2.header Отзывы
+    .arrow.left{"ng-class" => "{disabled: !feedbackCanMove('left') }", "ng-click" => "moveFeedbackLeft()"}
+    .arrow.right{"ng-class" => "{disabled: !feedbackCanMove('right') }", "ng-click" => "moveFeedbackRight()"}
+    #feedbacks-overflow
+      #feedbacks-wrapper{"ng-style" => "feedbacksLineStyle"}
+        .feedback{"ng-repeat" => "feedback in feedbacks"}
+          .bubble {{ feedback.text }}
+          .author {{ feedback.author }}
+#about.row{"ng-style" => "rowStyle"}
+  .container
+    %h2 Немного о нас
+    .block-row
+      .block
+        .clearfix
+          #about-1.image
+          .text{"ng-bind-html" => "settings.about1"}
+      .block.no-margin-right
+        .clearfix
+          #about-2.image
+          .text{"ng-bind-html" => "settings.about2"}
+    .block-row
+      .block
+        .clearfix
+          #about-3.image
+          .text{"ng-bind-html" => "settings.about3"}
+      .block.no-margin-right
+        .clearfix
+          #about-4.image
+          .text{"ng-bind-html" => "settings.about4"}
+#special.row{"ng-style" => "rowStyle"}
+  .container
+    .offer{"ng-bind-html" => "settings.special"}
+    .balloon
+    .buy
+      .wrapper{"ng-click" => "formState=true"}
+        %span Заказать праздник
+#where.row{"ng-style" => "rowStyle"}
+  .container
+    %h2 Как нас найти
+    #map-wrapper
+      #map
+    .address {{ settings.address1 }}
+    .address {{ settings.address2 }}
+#footer.row{"ng-style" => "rowStyle"}
+  .container
+    .logo
+    .company  {{ settings.company }}, #{Time.now.year}
+    #all-rights Все права защищены
+    #written-by
+      %a{:href => "http://be.net/julis", :target => "_blank"} Дизайн Кропотова Юлия
+    / begin of Top100 code
+    %script#top100Counter{:src => "http://counter.rambler.ru/top100.jcn?3023953", :type => "text/javascript"}
+    %noscript
+      %a{:href => "http://top100.rambler.ru/navi/3023953/"}
+        %img{:alt => "Rambler's Top100", :border => "0", :src => "http://counter.rambler.ru/top100.cnt?3023953"}/
+    / end of Top100 code
+.overflow{"ng-click" => "formState=!formState", "ng-show" => "formState", "ng-style" => "overflowStyle"}
+  .modal{"stop-event" => ""}
+    .close{"ng-click" => "formState=!formState"} ×
+    %form#form-buy{"ng-submit" => "buy()", :role => "form"}
+      %h2 Оставьте свой контакт и мы обязательно перезвоним!
+      %input{"ng-model" => "name", :placeholder => "Ваше имя", :required => "", :type => "text"}/
+      %input{"ng-model" => "phone", :placeholder => "Номер телефона", :required => "", :type => "text"}/
+      %button.submit{"ng-class" => "{ disabled: loadState }", "ng-disabled" => "loadState", :type => "submit"} Отправить заявку
+#big-photo.overflow{"ng-click" => "galleryState=!galleryState", "ng-show" => "galleryState", "ng-style" => "overflowStyle"}
+  .modal{"stop-event" => ""}
+    .close{"ng-click" => "galleryState=!galleryState"} ×
+    .photo
+      .arrow.left{"ng-class" => "{disabled: !canMoveBigPhoto('left') }", "ng-click" => "moveBigPhotoLeft()"}
+      .arrow.right{"ng-class" => "{disabled: !canMoveBigPhoto('right') }", "ng-click" => "moveBigPhotoRight()"}
+      %img{"ng-src" => "{{ photos[activePhotoIndex].image }}"}

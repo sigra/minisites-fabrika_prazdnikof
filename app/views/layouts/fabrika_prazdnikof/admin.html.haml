@@ -1,0 +1,16 @@
+!!! 5
+%html(ng-app="fp")
+  %head
+    %meta(charset="utf-8")
+
+    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'
+    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
+    = stylesheet_link_tag 'fabrika_prazdnikof/admin', media: "all"
+
+    = javascript_include_tag "http://code.jquery.com/jquery-1.11.0.min.js"
+    = javascript_include_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
+    = javascript_include_tag "fabrika_prazdnikof/admin"
+
+    %title Панель управления
+  %body
+    .container= yield
